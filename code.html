@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport"
+          content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+    <title>$title</title>
+    <style>
+    body,pre{margin:0}
+    .clearfix:after{/*伪元素是行内元素 正常浏览器清除浮动方法*/
+      content: "";
+      display: block;
+      height: 0;
+      clear:both;
+      visibility: hidden;
+    }
+
+    pre {
+      position: relative;
+      margin-bottom: 24px;
+      border-radius: 3px;
+      /*background: #FFF;*/
+      overflow: hidden;
+    }
+
+    .fonts, code{
+      font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace;
+      font-size: .85em;
+      line-height: 1.4;
+    }
+
+
+    .line-no {
+      float:left;
+      padding: 1em 3px ;
+      border-right: 1px solid #C3CCD0;
+      text-align: right;
+      color: #AAA;
+      margin: 0;
+    }
+
+    .line-no li{
+      list-style: none;
+    }
+
+    </style>
+    <style>$style</style>
+</head>
+<body>
+<pre class="clearfix"><code>$code</code></pre>
+<script>$js</script>
+</body>
+<script>
+  if($lineNumber) {
+    $('pre code').each(function () {
+      $(this).addClass('has-numbering');
+      var lines = $(this).text().split('\n').length;
+      var $numbering = $('<ul/>').addClass('line-no fonts hljs').before(this);
+      for (var i = 1; i <= lines; i++) {
+        $numbering.append($('<li/>').text(i));
+      }
+    });
+  }
+  hljs.highlightAll();
+</script>
+</html>
